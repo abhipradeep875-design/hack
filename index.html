@@ -1,0 +1,764 @@
+For NIKKI
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Nikki 🎀</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8F4;
+    --blush:#FFD9E3;
+    --blush-deep:#ffb0c5;
+    --sky:#BFE6F2;
+    --sky-deep:#8FD2E8;
+    --mauve:#614750;
+    --gold:#F2C879;
+    --white:#FFFFFF;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Quicksand', sans-serif;
+    background:var(--cream);
+    color:var(--mauve);
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fredoka', sans-serif;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+ 
+  /* ambient floating shapes */
+  .ambient{
+    position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .float-item{
+    position:absolute; opacity:0.55; will-change:transform;
+    animation:drift linear infinite;
+  }
+  @keyframes drift{
+    0%{ transform:translateY(110vh) translateX(0) rotate(0deg);}
+    100%{ transform:translateY(-15vh) translateX(20px) rotate(20deg);}
+  }
+ 
+  section{
+    position:relative; z-index:1;
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    padding:80px 24px;
+    text-align:center;
+  }
+ 
+  /* ---------- HERO ---------- */
+  #hero{
+    background:linear-gradient(180deg, #FFF8F4 0%, #FFEFF3 60%, #FFE3EC 100%);
+  }
+  .eyebrow{
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.7rem;
+    color:var(--blush-deep);
+    font-weight:600;
+    margin-bottom:18px;
+  }
+  .hero-title{
+    font-size:clamp(3rem, 11vw, 6.5rem);
+    font-weight:700;
+    color:var(--mauve);
+    line-height:1;
+    margin-bottom:10px;
+  }
+  .hero-title .sparkle-word{
+    color:var(--blush-deep);
+    position:relative;
+    display:inline-block;
+  }
+  .hero-sub{
+    font-size:1.15rem;
+    max-width:480px;
+    margin:14px auto 40px;
+    font-weight:500;
+    color:#8a6b74;
+  }
+ 
+  .countdown{
+    display:flex; gap:14px; flex-wrap:wrap; justify-content:center;
+    margin-bottom:46px;
+  }
+  .count-box{
+    background:var(--white);
+    border-radius:20px;
+    padding:18px 14px;
+    min-width:78px;
+    box-shadow:0 10px 30px rgba(255,175,196,0.35);
+    border:2px solid var(--blush);
+  }
+  .count-num{
+    font-family:'Fredoka', sans-serif;
+    font-size:2.1rem;
+    font-weight:700;
+    color:var(--blush-deep);
+    line-height:1;
+  }
+  .count-label{
+    font-size:0.68rem;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    margin-top:6px;
+    color:#a98a92;
+    font-weight:600;
+  }
+  .countdown-caption{
+    font-size:0.9rem;
+    color:#a98a92;
+    font-weight:600;
+  }
+ 
+  .scroll-cue{
+    margin-top:56px;
+    font-size:0.8rem;
+    color:#b799a1;
+    font-weight:600;
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+  }
+  .scroll-cue span{
+    width:22px; height:34px; border:2px solid #d9a9b5; border-radius:14px;
+    position:relative;
+  }
+  .scroll-cue span::before{
+    content:''; position:absolute; top:6px; left:50%; width:4px; height:8px;
+    background:#d9a9b5; border-radius:2px; transform:translateX(-50%);
+    animation:scrollDot 1.6s ease-in-out infinite;
+  }
+  @keyframes scrollDot{
+    0%{ top:6px; opacity:1;} 60%{ top:16px; opacity:0.3;} 100%{ top:6px; opacity:1;}
+  }
+ 
+  /* ---------- BALLOON REVEAL ---------- */
+  #reveal{
+    background:linear-gradient(180deg, #FFE3EC 0%, #D9F0F8 100%);
+  }
+  .reveal-heading{
+    font-size:clamp(1.6rem, 4vw, 2.4rem);
+    margin-bottom:8px;
+    font-weight:600;
+  }
+  .reveal-sub{
+    color:#5f7d87;
+    font-weight:600;
+    margin-bottom:44px;
+    font-size:0.95rem;
+  }
+  .balloon-field{
+    position:relative;
+    display:flex;
+    gap:28px;
+    justify-content:center;
+    flex-wrap:wrap;
+    max-width:640px;
+  }
+  .balloon{
+    width:96px; height:120px;
+    border-radius:50% 50% 50% 50% / 58% 58% 42% 42%;
+    cursor:pointer;
+    position:relative;
+    box-shadow:inset -12px -14px 0 rgba(0,0,0,0.06), 0 12px 20px rgba(0,0,0,0.08);
+    animation:bob 3.4s ease-in-out infinite;
+    transition:transform 0.25s ease;
+  }
+  .balloon:hover{ transform:scale(1.06) translateY(-4px); }
+  .balloon::after{
+    content:''; position:absolute; left:50%; bottom:-46px; transform:translateX(-50%);
+    width:2px; height:46px; background:#c9adb5;
+  }
+  .balloon:nth-child(1){ background:var(--blush-deep); animation-delay:0s;}
+  .balloon:nth-child(2){ background:var(--sky-deep); animation-delay:0.6s;}
+  .balloon:nth-child(3){ background:var(--gold); animation-delay:1.2s;}
+  @keyframes bob{
+    0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-14px);}
+  }
+  .balloon.popped{
+    animation:none;
+    transform:scale(0);
+    opacity:0;
+    pointer-events:none;
+  }
+  .balloon-hint{
+    margin-top:64px;
+    font-size:0.85rem;
+    color:#5f7d87;
+    font-weight:600;
+    opacity:0.85;
+  }
+ 
+  .message-card{
+    max-width:600px;
+    background:var(--white);
+    border-radius:28px;
+    padding:44px 32px;
+    box-shadow:0 20px 50px rgba(143,210,232,0.35);
+    border:2px solid var(--sky);
+    display:none;
+    animation:popIn 0.6s cubic-bezier(.2,1.4,.4,1) forwards;
+  }
+  .message-card.show{ display:block; }
+  @keyframes popIn{
+    0%{ transform:scale(0.7); opacity:0;}
+    100%{ transform:scale(1); opacity:1;}
+  }
+  .message-card p{
+    font-size:1.15rem;
+    line-height:1.75;
+    font-weight:600;
+    color:var(--mauve);
+    white-space:pre-line;
+  }
+  .message-signoff{
+    margin-top:22px;
+    font-family:'Fredoka', sans-serif;
+    font-size:1.1rem;
+    color:var(--blush-deep);
+  }
+ 
+  /* ---------- GALLERY ---------- */
+  #gallery{
+    background:var(--cream);
+    padding-top:100px;
+  }
+  .section-title{
+    font-size:clamp(2rem, 5vw, 2.8rem);
+    font-weight:600;
+    margin-bottom:8px;
+  }
+  .section-sub{
+    color:#a98a92;
+    font-weight:600;
+    margin-bottom:36px;
+    font-size:0.95rem;
+  }
+ 
+  /* the clickable surprise trigger for the gallery */
+  .surprise-btn{
+    background:var(--white);
+    border:2px solid var(--blush-deep);
+    color:var(--blush-deep);
+    padding:16px 34px;
+    font-size:1.05rem;
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    letter-spacing:.3px;
+    border-radius:40px;
+    cursor:pointer;
+    box-shadow:0 12px 30px rgba(255,176,197,0.35);
+    transition:transform .3s ease, background .3s ease, color .3s ease;
+    margin-bottom:12px;
+  }
+  .surprise-btn:hover{
+    background:var(--blush-deep);
+    color:var(--white);
+    transform:scale(1.05);
+  }
+  .surprise-btn.hidden{
+    display:none;
+  }
+ 
+  .slideshow-wrap{
+    opacity:0;
+    max-height:0;
+    overflow:hidden;
+    transition:opacity .6s ease;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .slideshow-wrap.visible{
+    opacity:1;
+    max-height:none;
+    overflow:visible;
+  }
+ 
+  .slideshow{
+    position:relative;
+    width:min(420px, 88vw);
+    height:min(520px, 62vh);
+    border-radius:28px;
+    overflow:hidden;
+    box-shadow:0 24px 60px rgba(107,76,87,0.25);
+    border:6px solid var(--white);
+  }
+  .slide{
+    position:absolute; inset:0;
+    opacity:0;
+    transition:opacity 1s ease;
+  }
+  .slide.active{ opacity:1; }
+  .slide img{
+    width:100%; height:100%; object-fit:cover; display:block;
+  }
+  .slide-dots{
+    display:flex; gap:8px; margin-top:22px;
+  }
+  .dot{
+    width:8px; height:8px; border-radius:50%;
+    background:var(--blush);
+    cursor:pointer;
+    transition:all 0.3s ease;
+  }
+  .dot.active{ background:var(--blush-deep); width:22px; border-radius:5px; }
+ 
+  /* ---------- CANDLES / WISH ---------- */
+  #wish{
+    background:linear-gradient(180deg, #D9F0F8 0%, #FFEFD9 100%);
+  }
+  .cake{
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .candles{
+    display:flex; gap:16px; margin-bottom:0;
+  }
+  .candle{
+    width:10px; height:52px;
+    background:linear-gradient(180deg, #FFB6C9, #FF8FAE);
+    border-radius:4px;
+    position:relative;
+    cursor:pointer;
+  }
+  .flame{
+    position:absolute; top:-22px; left:50%; transform:translateX(-50%);
+    width:14px; height:20px;
+    background:radial-gradient(circle at 50% 70%, #FFE08A 0%, #FFB74D 55%, #FF7043 100%);
+    border-radius:50% 50% 50% 50% / 60% 60% 40% 40%;
+    animation:flicker 0.9s ease-in-out infinite alternate;
+    transition:opacity 0.4s ease, transform 0.4s ease;
+  }
+  @keyframes flicker{
+    0%{ transform:translateX(-50%) scale(1) rotate(-2deg);}
+    100%{ transform:translateX(-50%) scale(1.12) rotate(2deg);}
+  }
+  .candle.out .flame{ opacity:0; transform:translateX(-50%) scale(0.2); }
+  .candle.out::after{
+    content:''; position:absolute; top:-20px; left:50%; transform:translateX(-50%);
+    width:3px; height:10px; background:#c9c2c2; border-radius:2px; opacity:0.6;
+  }
+  .cake-body{
+    width:260px; height:120px;
+    background:linear-gradient(180deg, #FFF3E0 0%, #FFE0EC 100%);
+    border-radius:16px 16px 30px 30px;
+    margin-top:6px;
+    box-shadow:0 16px 40px rgba(107,76,87,0.2);
+    position:relative;
+    border:4px solid var(--white);
+  }
+  .cake-body::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:14px;
+    background:repeating-linear-gradient(90deg, var(--blush-deep) 0 14px, var(--sky-deep) 14px 28px);
+    border-radius:16px 16px 0 0;
+  }
+  .wish-hint{
+    margin-top:28px;
+    font-weight:600;
+    color:#8a6b74;
+    font-size:0.95rem;
+  }
+  .wish-input-wrap{
+    margin-top:30px;
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:center;
+    max-width:480px;
+  }
+  .wish-input-wrap input{
+    padding:14px 18px;
+    border-radius:16px;
+    border:2px solid var(--blush);
+    font-family:'Quicksand', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    min-width:260px;
+    outline:none;
+    background:var(--white);
+    color:var(--mauve);
+  }
+  .wish-input-wrap input:focus{ border-color:var(--blush-deep); }
+  .wish-input-wrap button{
+    padding:14px 26px;
+    border-radius:16px;
+    border:none;
+    background:var(--blush-deep);
+    color:var(--white);
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    cursor:pointer;
+    transition:transform 0.2s ease, background 0.2s ease;
+  }
+  .wish-input-wrap button:hover{ transform:translateY(-2px); background:#ff96b0; }
+  .wish-output{
+    margin-top:26px;
+    font-family:'Fredoka', sans-serif;
+    font-size:1.15rem;
+    color:var(--mauve);
+    min-height:1.6em;
+  }
+ 
+  /* ---------- FOOTER ---------- */
+  #footer{
+    background:var(--cream);
+    min-height:40vh;
+    padding-bottom:60px;
+  }
+  .footer-title{
+    font-size:clamp(1.8rem, 4vw, 2.4rem);
+    margin-bottom:14px;
+  }
+  .footer-sub{
+    color:#a98a92;
+    font-weight:600;
+    max-width:420px;
+  }
+  .heart-row{
+    margin-top:26px;
+    font-size:1.4rem;
+    letter-spacing:6px;
+  }
+ 
+  /* confetti canvas */
+  #confetti-canvas{
+    position:fixed; inset:0; pointer-events:none; z-index:50;
+  }
+</style>
+</head>
+<body>
+ 
+<canvas id="confetti-canvas"></canvas>
+<div class="ambient" id="ambient"></div>
+ 
+<!-- HERO -->
+<section id="hero">
+  <div class="eyebrow">a little website, just for you</div>
+  <h1 class="hero-title">Happy Birthday<br><span class="sparkle-word">Nikki</span> 🎀</h1>
+  <p class="hero-sub">Counting down to your big day — because someone as special as you deserves a countdown of her very own.</p>
+ 
+  <div class="countdown" id="countdown">
+    <div class="count-box"><div class="count-num" id="cd-days">00</div><div class="count-label">Days</div></div>
+    <div class="count-box"><div class="count-num" id="cd-hours">00</div><div class="count-label">Hours</div></div>
+    <div class="count-box"><div class="count-num" id="cd-mins">00</div><div class="count-label">Mins</div></div>
+    <div class="count-box"><div class="count-num" id="cd-secs">00</div><div class="count-label">Secs</div></div>
+  </div>
+  <div class="countdown-caption" id="countdown-caption">until 31st August 🎂</div>
+ 
+  <div class="scroll-cue"><span></span>scroll down</div>
+</section>
+ 
+<!-- BALLOON REVEAL -->
+<section id="reveal">
+  <h2 class="reveal-heading">Pop a balloon 🎈</h2>
+  <p class="reveal-sub">there's a message for you hiding inside one of these</p>
+ 
+  <div class="balloon-field" id="balloon-field">
+    <div class="balloon" data-balloon="1"></div>
+    <div class="balloon" data-balloon="2"></div>
+    <div class="balloon" data-balloon="3"></div>
+  </div>
+  <p class="balloon-hint" id="balloon-hint">tap any balloon</p>
+ 
+  <div class="message-card" id="message-card">
+    <p>Many more happy returns of the day, Nikhithaa🤍👸🎁 I truly wish everyone could be as lucky as me to have found a friend as caring, loving, and special as you Nikki🫣.
+       From all the laughs we've shared to the countless  little moments 💫 that somehow turned into big memories, 
+       you've made life so much brighter just by being in it. No matter what situation life throws your way, 
+       know that I'll always be there for you🫶 — through the good days, the bad days😭, and everything in between. 
+       May this new year bring you endless happiness🫠, success in everything you chase😇, and all your dreams coming true😌, one by one. 
+       Happy birthday, Nikki! Here's to another year of your beautiful, chaotic, wonderful self. 😇✨🥳❣️</p>
+    <div class="message-signoff">— your friend, Pradeep 💌</div>
+  </div>
+</section>
+ 
+<!-- GALLERY -->
+<section id="gallery">
+  <h2 class="section-title">Some favourite frames 📸</h2>
+  <p class="section-sub">a little scroll through the memories</p>
+ 
+  <button class="surprise-btn" id="surpriseBtn">Open for your surprise 🎁</button>
+ 
+  <div class="slideshow-wrap" id="slideshowWrap">
+    <div class="slideshow" id="slideshow">
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.16.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\OneDrive\Documents\nikki.jpg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.1.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\LocalState\sessions\D1E86AB00D703FA258B4E5DB51D4876FDBDDAE81\transfers\2026-34\WhatsApp Image 2026-08-15 at 6.34.25 PM.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.5.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.2.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.3.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.7.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.8.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.9.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.10.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.11.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.12.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.13.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.16.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.17.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.6.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.19.jpeg" alt="Nikki"></div>
+      <div class="slide"><img src="C:\Users\SDReddy\Downloads\NIKHITHA\NIKKI.15.jpeg" alt="Nikki"></div>
+
+    </div>
+    <div class="slide-dots" id="slide-dots"></div>
+  </div>
+</section>
+ 
+<!-- WISH -->
+<section id="wish">
+  <h2 class="section-title">Make a wish 🕯️</h2>
+  <p class="section-sub">blow out the candles, one by one</p>
+ 
+  <div class="cake">
+    <div class="candles" id="candles">
+      <div class="candle" data-candle="1"><div class="flame"></div></div>
+      <div class="candle" data-candle="2"><div class="flame"></div></div>
+      <div class="candle" data-candle="3"><div class="flame"></div></div>
+    </div>
+    <div class="cake-body"></div>
+  </div>
+  <p class="wish-hint" id="wish-hint">tap each candle to blow it out</p>
+ 
+  <div class="wish-input-wrap" id="wish-input-wrap" style="display:none;">
+    <input type="text" id="wish-text" placeholder="type your wish, Nikki...">
+    <button id="wish-submit">Send it ✨</button>
+  </div>
+  <div class="wish-output" id="wish-output"></div>
+</section>
+ 
+<!-- FOOTER -->
+<section id="footer">
+  <h2 class="footer-title">Have the best year yet, Nikki 🎂</h2>
+  <p class="footer-sub">Made with way too many tabs open and a lot of love, for your birthday.</p>
+  <div class="heart-row">🎈 🎉 💗 🎊 🎁</div>
+</section>
+ 
+<script>
+/* ---------- ambient floating shapes ---------- */
+(function(){
+  const ambient = document.getElementById('ambient');
+  const items = ['🎈','🎈','🎀','✨','🎈','💗'];
+  for(let i=0;i<16;i++){
+    const el = document.createElement('div');
+    el.className = 'float-item';
+    el.textContent = items[Math.floor(Math.random()*items.length)];
+    el.style.left = Math.random()*100 + 'vw';
+    el.style.fontSize = (14 + Math.random()*20) + 'px';
+    el.style.animationDuration = (14 + Math.random()*14) + 's';
+    el.style.animationDelay = (-Math.random()*20) + 's';
+    ambient.appendChild(el);
+  }
+})();
+ 
+/* ---------- countdown ---------- */
+(function(){
+  const target = new Date('2026-09-31T00:00:00');
+  const dEl = document.getElementById('cd-days');
+  const hEl = document.getElementById('cd-hours');
+  const mEl = document.getElementById('cd-mins');
+  const sEl = document.getElementById('cd-secs');
+  const caption = document.getElementById('countdown-caption');
+ 
+  function pad(n){ return String(n).padStart(2,'0'); }
+ 
+  function tick(){
+    const now = new Date();
+    let diff = target - now;
+    if(diff <= 0){
+      dEl.textContent = '00'; hEl.textContent='00'; mEl.textContent='00'; sEl.textContent='00';
+      caption.textContent = "it's your day, Nikki! 🎉";
+      clearInterval(timer);
+      return;
+    }
+    const days = Math.floor(diff / (1000*60*60*24));
+    diff -= days*(1000*60*60*24);
+    const hours = Math.floor(diff/(1000*60*60));
+    diff -= hours*(1000*60*60);
+    const mins = Math.floor(diff/(1000*60));
+    diff -= mins*(1000*60);
+    const secs = Math.floor(diff/1000);
+ 
+    dEl.textContent = pad(days);
+    hEl.textContent = pad(hours);
+    mEl.textContent = pad(mins);
+    sEl.textContent = pad(secs);
+  }
+  tick();
+  const timer = setInterval(tick, 1000);
+})();
+ 
+/* ---------- confetti ---------- */
+const confettiCanvas = document.getElementById('confetti-canvas');
+const ctx = confettiCanvas.getContext('2d');
+function resizeCanvas(){
+  confettiCanvas.width = window.innerWidth;
+  confettiCanvas.height = window.innerHeight;
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+ 
+let particles = [];
+const confettiColors = ['#FFAFC4','#8FD2E8','#F2C879','#FF8FAE','#BFE6F2','#FFD9E3'];
+ 
+function burstConfetti(originX, originY, count=90){
+  for(let i=0;i<count;i++){
+    particles.push({
+      x: originX,
+      y: originY,
+      vx: (Math.random()-0.5)*10,
+      vy: (Math.random()*-9)-3,
+      size: 5 + Math.random()*6,
+      color: confettiColors[Math.floor(Math.random()*confettiColors.length)],
+      rot: Math.random()*360,
+      vrot: (Math.random()-0.5)*14,
+      shape: Math.random() > 0.5 ? 'rect' : 'circle',
+      life: 0
+    });
+  }
+}
+ 
+function animateConfetti(){
+  ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+  particles.forEach(p=>{
+    p.vy += 0.22;
+    p.x += p.vx;
+    p.y += p.vy;
+    p.rot += p.vrot;
+    p.life++;
+    ctx.save();
+    ctx.translate(p.x, p.y);
+    ctx.rotate(p.rot * Math.PI/180);
+    ctx.fillStyle = p.color;
+    if(p.shape === 'rect'){
+      ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size*0.6);
+    } else {
+      ctx.beginPath();
+      ctx.arc(0,0,p.size/2,0,Math.PI*2);
+      ctx.fill();
+    }
+    ctx.restore();
+  });
+  particles = particles.filter(p => p.y < confettiCanvas.height + 40 && p.life < 400);
+  requestAnimationFrame(animateConfetti);
+}
+animateConfetti();
+ 
+/* ---------- balloon pop reveal ---------- */
+(function(){
+  const balloons = document.querySelectorAll('.balloon');
+  const card = document.getElementById('message-card');
+  const hint = document.getElementById('balloon-hint');
+  let revealed = false;
+ 
+  balloons.forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if(revealed) return;
+      const rect = b.getBoundingClientRect();
+      burstConfetti(rect.left + rect.width/2, rect.top + rect.height/2, 70);
+      b.classList.add('popped');
+      revealed = true;
+      hint.textContent = 'you got it 🎈';
+      setTimeout(()=>{
+        card.classList.add('show');
+      }, 250);
+      balloons.forEach(other=>{
+        if(other !== b) setTimeout(()=> other.classList.add('popped'), 150);
+      });
+    });
+  });
+})();
+ 
+/* ---------- gallery: click-to-reveal surprise, then slideshow ---------- */
+(function(){
+  const surpriseBtn = document.getElementById('surpriseBtn');
+  const slideshowWrap = document.getElementById('slideshowWrap');
+  const slides = document.querySelectorAll('.slide');
+  const dotsWrap = document.getElementById('slide-dots');
+  let current = 0;
+  let autoTimer = null;
+ 
+  // build the dot indicators
+  slides.forEach((_, i)=>{
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i===0 ? ' active' : '');
+    dot.addEventListener('click', ()=> goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+  const dots = document.querySelectorAll('.dot');
+ 
+  function goTo(i){
+    slides[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = i;
+    slides[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+ 
+  function startAutoRotate(){
+    if(autoTimer) clearInterval(autoTimer);
+    autoTimer = setInterval(()=>{
+      goTo((current + 1) % slides.length);
+    }, 3200);
+  }
+ 
+  surpriseBtn.addEventListener('click', ()=>{
+    surpriseBtn.classList.add('hidden');
+    slideshowWrap.classList.add('visible');
+ 
+    // reveal each photo one by one, 1 second apart
+    slides.forEach((slide, i)=>{
+      setTimeout(()=>{
+        goTo(i);
+      }, i * 1000);
+    });
+ 
+    // once the one-by-one reveal finishes, settle into the normal slow rotation
+    setTimeout(()=>{
+      startAutoRotate();
+    }, slides.length * 1000);
+  });
+})();
+ 
+/* ---------- candles + wish ---------- */
+(function(){
+  const candles = document.querySelectorAll('.candle');
+  const wishHint = document.getElementById('wish-hint');
+  const wishInputWrap = document.getElementById('wish-input-wrap');
+  const wishOutput = document.getElementById('wish-output');
+  const wishSubmit = document.getElementById('wish-submit');
+  const wishText = document.getElementById('wish-text');
+ 
+  candles.forEach(c=>{
+    c.addEventListener('click', ()=>{
+      if(c.classList.contains('out')) return;
+      c.classList.add('out');
+      const allOut = [...candles].every(cc => cc.classList.contains('out'));
+      if(allOut){
+        wishHint.textContent = 'all out — make your wish, Nikki 🌙';
+        wishInputWrap.style.display = 'flex';
+        const rect = document.querySelector('.cake-body').getBoundingClientRect();
+        burstConfetti(rect.left + rect.width/2, rect.top, 60);
+      }
+    });
+  });
+ 
+  wishSubmit.addEventListener('click', submitWish);
+  wishText.addEventListener('keydown', (e)=>{ if(e.key === 'Enter') submitWish(); });
+ 
+  function submitWish(){
+    const val = wishText.value.trim();
+    if(!val) return;
+    wishOutput.textContent = 'wish sent into the universe ✨ hope it comes true, Nikki 💗';
+    wishText.value = '';
+    const rect = wishInputWrap.getBoundingClientRect();
+    burstConfetti(rect.left + rect.width/2, rect.top, 50);
+  }
+})();
+</script>
+</body>
+</html>
